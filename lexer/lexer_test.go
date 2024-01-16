@@ -1,21 +1,21 @@
 package lexer
 
 import (
-	"fmt"
-	"github.com/KadyrPoyraz/interpreter_in_go/token"
-	"strings"
 	"testing"
+
+	"github.com/KadyrPoyraz/monkeygo/token"
 )
 
 func TestNextToken(t *testing.T) {
-	input := `
-		let five = 5;
-			let ten = 10;
-			let add = fn(x, y) {
-			x + y;
-		};
-		let result = add(five, ten);
-	`
+	input := `let five = 5;
+        let ten = 10;
+
+        let add = fn(x, y) {
+            x + y;
+        };
+
+        let result = add(five, ten);
+    `
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
@@ -58,41 +58,15 @@ func TestNextToken(t *testing.T) {
 		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
+
 	l := New(input)
 	for i, tt := range tests {
 		tok := l.NextToken()
 		if tok.Type != tt.expectedType {
-			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q",
-				i, tt.expectedType, tok.Type)
+			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q", i, tt.expectedType, tok.Type)
 		}
 		if tok.Literal != tt.expectedLiteral {
-			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
-				i, tt.expectedLiteral, tok.Literal)
+			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q", i, tt.expectedLiteral, tok.Literal)
 		}
 	}
-}
-
-func TestAboba(t *testing.T) {
-	code := `
-		let a = 12
-		let b = a
-	`
-
-	lexer := New(code)
-	var tokens []token.Token
-	for lexer.position < len(code) {
-		tok := lexer.NextToken()
-		tokens = append(tokens, tok)
-	}
-	text := make([]string, len(tokens)-1)
-	for i, t := range tokens {
-		if t.Type != token.EOF {
-			text[i] = t.Literal
-		}
-	}
-
-	str := strings.Join(text, " ")
-	fmt.Println("=================")
-	fmt.Println(str)
-	fmt.Println("=================")
 }

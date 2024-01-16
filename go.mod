@@ -1,3 +1,3 @@
-module github.com/KadyrPoyraz/interpreter_in_go
+module github.com/KadyrPoyraz/monkeygo
 
 go 1.20
