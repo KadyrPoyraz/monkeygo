@@ -14,7 +14,7 @@ func main() {
         panic(err)
     }
 
-    text := "Hello %s! This is the Monkey programming language!\n"
+    text := "Hello %s! This is the Monkeygo programming language!\n"
     fmt.Printf(text, user.Username)
     fmt.Printf("Feel free to type in commands\n")
 
