@@ -11,6 +11,8 @@ type Lexer struct {
 	ch           byte
 }
 
+// "let a = 228"
+
 func New(input string) *Lexer {
 	l := &Lexer{
 		input: input,
@@ -29,9 +31,8 @@ func (l *Lexer) readChar() {
 func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
-	} else {
-		return l.input[l.readPosition]
-	}
+	} 
+    return l.input[l.readPosition]
 }
 
 func (l *Lexer) NextToken() token.Token {
