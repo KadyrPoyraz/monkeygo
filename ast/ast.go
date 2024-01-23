@@ -21,9 +21,9 @@ type Program struct {
 }
 
 func NewProgram(statemets []Statement) *Program {
-    return &Program{
-        Statements: statemets,
-    }
+	return &Program{
+		Statements: statemets,
+	}
 }
 
 func (p *Program) TokenLiteral() string {
@@ -46,7 +46,6 @@ func NewIdentifier() Expression {
 func (i *Identifier) TokenLiteral() string {
 	return i.Token.Literal
 }
-
 func (i *Identifier) expressionNode() {
 }
 
@@ -63,5 +62,14 @@ func NewLetStatement() Statement {
 func (ls *LetStatement) TokenLiteral() string {
 	return ls.Token.Literal
 }
-func (*LetStatement) statementNode() {
+func (*LetStatement) statementNode() {}
+
+type ReturnStatement struct {
+	Token       token.Token
+	ReturnValue Expression
 }
+
+func (rs *ReturnStatement) TokenLiteral() string {
+	return rs.Token.Literal
+}
+func (rs *ReturnStatement) statementNode() {}
