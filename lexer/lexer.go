@@ -4,14 +4,13 @@ import (
 	"github.com/KadyrPoyraz/monkeygo/token"
 )
 
+
 type Lexer struct {
 	input        string
 	position     int
 	readPosition int
 	ch           byte
 }
-
-// "let a = 228"
 
 func New(input string) *Lexer {
 	l := &Lexer{
