@@ -28,11 +28,11 @@ func (i *Integer) Type() ObjectType {
 }
 
 type Boolean struct {
-	Value int64
+	Value bool
 }
 
 func (i *Boolean) Inspect() string {
-	return fmt.Sprintf("%d", i.Value)
+	return fmt.Sprintf("%t", i.Value)
 }
 
 func (i *Boolean) Type() ObjectType {
